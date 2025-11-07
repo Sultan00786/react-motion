@@ -33,13 +33,24 @@ function Card() {
               A collection of beautiful card UI components. Let's see them in
               action
             </p>
-            <button
+            <motion.button
               onClick={() => setIsOpen(false)}
-              className="text-[15px] font-semibold flex items-center gap-1 mt-4 border text-gray-600 border-gray-200 rounded-md shadow-xs px-2 py-1"
+              className="text-[15px] font-semibold flex items-center gap-1 mt-4 border text-gray-600 border-gray-200 rounded-md shadow-xs px-2 py-1 cursor-pointer"
+              // whileHover={{
+              //   translateY: -5,
+              // }}
+              // whileTap={{
+              //   translateY: 2,
+              //   transition: { duration: 0 },
+              // }}
+              // transition={{
+              //   duration: 0.2,
+              //   ease: "easeInOut",
+              // }}
             >
               Close
               <X className="w-4 h-4 mt-[2.8px] text-gray-500" strokeWidth={2} />
-            </button>
+            </motion.button>
 
             <div className="bg-gray-100/25 flex-1 w-5/6 mt-4 mb-7 rounded-lg border border-dashed border-gray-200 relative">
               <motion.div
