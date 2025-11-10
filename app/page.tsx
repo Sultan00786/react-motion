@@ -22,11 +22,15 @@ const works = [
     label: "Scroll Hook",
     href: "/scrollHook",
   },
+  {
+    label: "Motion Layout",
+    href: "/motionLayout",
+  },
 ];
 
 export default function Home() {
   return (
-    <div className="bg-[#F7F7F8] w-full h-full">
+    <div className="bg-gray-150 w-full h-full">
       <div className="flex flex-col w-4xl mx-auto gap-2 px-2 pt-8 h-screen bg-white border-x border border-gray-200">
         {works.map((workItem, index) => (
           <ListItem index={index} workItem={workItem} key={index} />

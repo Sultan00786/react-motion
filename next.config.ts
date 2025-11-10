@@ -5,7 +5,7 @@ const nextConfig: NextConfig = {
   poweredByHeader: false,
   devIndicators: {
     buildActivity: false,
-    buildActivityPosition: "bottom-right",
+    appIsrStatus: false,
   },
 };
 
