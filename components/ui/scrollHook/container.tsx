@@ -1,6 +1,14 @@
 "use client";
 import { ChartPie, Framer, PartyPopper } from "lucide-react";
-import { useMotionValueEvent, useScroll } from "motion/react";
+import {
+  useMotionTemplate,
+  useMotionValue,
+  useMotionValueEvent,
+  useScroll,
+  motion,
+  useSpring,
+  useTransform,
+} from "motion/react";
 import Image, { StaticImageData } from "next/image";
 import { JSX, useRef } from "react";
 import scrollHook1 from "../../../public/scrollHook/scrollHook1.webp";
@@ -38,8 +46,21 @@ const contents = [
   },
 ];
 function Container() {
+  const { scrollYProgress } = useScroll();
+  const scaleX = useSpring(scrollYProgress, {
+    stiffness: 100,
+    damping: 30,
+    restDelta: 0.001,
+  });
   return (
-    <div>
+    <div className="w-full">
+      <motion.div
+        style={{
+          scaleX: scaleX,
+          originX: 0,
+        }}
+        className="fixed top-0 left-0 w-full h-2 z-50 bg-pink-500"
+      ></motion.div>
       {contents.map((item, index) => (
         <ContainerItem key={index} item={item} index={index} />
       ))}
@@ -59,9 +80,11 @@ function ContainerItem({
     target: ref,
     offset: ["start end", "end start"],
   });
-  useMotionValueEvent(scrollYProgress, "change", (latest) => {
-    console.log(latest);
-  });
+
+  const translateY = useTransform(scrollYProgress, [0, 0.5, 1], [500, 0, 100]);
+  const scale = useTransform(scrollYProgress, [0, 0.5, 1], [0.5, 1, 0.85]);
+  const opacity = useTransform(scrollYProgress, [0, 0.5, 1], [0, 1, 1]);
+  const blur = useTransform(scrollYProgress, [0, 0.5, 1], [10, 0, 3]);
 
   return (
     <div key={index} ref={ref} className="w-full h-screen">
@@ -71,13 +94,21 @@ function ContainerItem({
           <h1 className="text-3xl font-bold">{item.headline}</h1>
           <p className="text-neutral-400">{item.subheadline}</p>
         </div>
-        <div className="w-full">
+        <motion.div
+          style={{
+            filter: useMotionTemplate`blur(${blur}px)`,
+            translateY: translateY,
+            scale: scale,
+            opacity: opacity,
+          }}
+          className="w-full"
+        >
           <Image
             src={item.image}
-            className=" w-[400px] h-[400px] object-cover rounded-lg"
+            className=" w-[400px] h-[400px] relative z-10 object-cover rounded-lg"
             alt=""
           />
-        </div>
+        </motion.div>
       </div>
     </div>
   );
