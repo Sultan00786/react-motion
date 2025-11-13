@@ -1,4 +1,4 @@
-# 🌟 React-Motion Animation Demo
+# React-Motion Animation Demo
 
 ## What is this repository for?
 
@@ -8,7 +8,7 @@ Feel free to fork and modify as per your needs.
 
 ---
 
-## 📄 Pages and Concepts
+## Pages and Concepts
 
 It contains **four main pages** (found under the `app/` directory). Each page focuses on a distinct animation concept:
 
@@ -23,7 +23,7 @@ It contains **four main pages** (found under the `app/` directory). Each page fo
 
 ---
 
-## 🚀 How to Run this Repo Locally
+## Setup this Repo Locally
 
 If you want to set up this project on your own system and view the animations, follow these steps:
 
